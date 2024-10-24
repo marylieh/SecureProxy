@@ -41,27 +41,27 @@ jobs:
             - secure*
             - tbot*
 
-    deploy:
-      machine:
-        image: ubuntu-2204:current
-      steps:
-        - attach_workspace:
-            at: /tmp/workspace
-        - run:
-            name: Install Teleport
-            command: |
-              cd /tmp
-              curl -O https://cdn.teleport.dev/teleport-v16.4.3-linux-amd64-bin.tar.gz
-              tar xvf teleport-v16.4.3-linux-amd64-bin.tar.gz
-              sudo ./teleport/install
-        - run:
-            name: Run Machine ID
-            command: |
-              export TELEPORT_ANONYMOUS_TELEMETRY=0
-              tbot start -c /tmp/workspace/tbot.yaml
-        - run:
-            name: Deploy via Teleport
-            command: tsh -i /tmp/workspace/machine-id/identity --proxy teleport.marylieh.social:443 scp /tmp/workspace/secure-proxy-1.0-SNAPSHOT.jar root@lxvm7-308:/mnt/denrolinc-proxy/server/plugins/
+  deploy:
+    machine:
+      image: ubuntu-2204:current
+    steps:
+      - attach_workspace:
+          at: /tmp/workspace
+      - run:
+          name: Install Teleport
+          command: |
+            cd /tmp
+            curl -O https://cdn.teleport.dev/teleport-v16.4.3-linux-amd64-bin.tar.gz
+            tar xvf teleport-v16.4.3-linux-amd64-bin.tar.gz
+            sudo ./teleport/install
+      - run:
+          name: Run Machine ID
+          command: |
+            export TELEPORT_ANONYMOUS_TELEMETRY=0
+            tbot start -c /tmp/workspace/tbot.yaml
+      - run:
+          name: Deploy via Teleport
+          command: tsh -i /tmp/workspace/machine-id/identity --proxy teleport.marylieh.social:443 scp /tmp/workspace/secure-proxy-1.0-SNAPSHOT.jar root@lxvm7-308:/mnt/denrolinc-proxy/server/plugins/
 
 workflows:
   build-and-deploy:
