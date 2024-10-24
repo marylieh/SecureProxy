@@ -1,9 +1,12 @@
 plugins {
     kotlin("jvm") version "2.0.20"
+    kotlin("kapt") version "2.0.21"
 }
 
 group = "social.marylieh.secureproxy"
 version = "1.0-SNAPSHOT"
+
+val kotlinVersion: String by project
 
 repositories {
     mavenCentral()
@@ -11,9 +14,9 @@ repositories {
 }
 
 dependencies {
-    testImplementation(kotlin("test"))
     compileOnly("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
     annotationProcessor("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
+    kapt("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 }
 
 kotlin {
