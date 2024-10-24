@@ -1,0 +1,14 @@
+version: v2
+proxy_server: teleport.marylieh.social:443
+onboarding:
+  join_method: circleci
+  token: secure-proxy-token
+oneshot: true
+storage:
+  type: memory
+
+outputs:
+- type: identity
+  destination:
+    type: directory
+    path: /tmp/workspace/machine-id
