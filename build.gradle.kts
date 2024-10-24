@@ -29,6 +29,8 @@ kotlin {
 }
 
 tasks.shadowJar {
+    archiveClassifier.set("")
+    configurations = listOf(project.configurations.runtimeClasspath.get())
     mergeServiceFiles()
 }
 
