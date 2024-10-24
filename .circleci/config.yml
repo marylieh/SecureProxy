@@ -61,7 +61,7 @@ jobs:
             tbot start -c /tmp/workspace/tbot.yaml
       - run:
           name: Deploy via Teleport
-          command: tsh -i /tmp/workspace/machine-id/identity --proxy teleport.marylieh.social:443 scp /tmp/workspace/secure-proxy-1.0-SNAPSHOT.jar root@lxvm7-308:/mnt/denrolinc-proxy/server/plugins/
+          command: tsh -i /tmp/workspace/machine-id/identity --proxy teleport.marylieh.social:443 scp /tmp/workspace/secure-proxy-1.0-SNAPSHOT.jar root@lxvm7-208:/mnt/denrolinc-proxy/server/plugins/
 
 workflows:
   build-and-deploy:
