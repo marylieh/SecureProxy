@@ -11,12 +11,6 @@ object ConfigManager {
 
     private lateinit var config: Path
 
-    lateinit var dbHost: String
-    lateinit var dbName: String
-    lateinit var dbPort: Integer
-    lateinit var dbUser: String
-    lateinit var dbPassword: String
-
     fun initConfig() {
         config = Path.of("plugins/secure-proxy/config.toml")
 
@@ -25,7 +19,9 @@ object ConfigManager {
             try {
                 val configTemplate = javaClass.getResourceAsStream("/config.toml")
                 assert(configTemplate != null)
-                Files.write(config, configTemplate.readAllBytes(), StandardOpenOption.CREATE_NEW)
+                if (configTemplate != null) {
+                    Files.write(config, configTemplate.readAllBytes(), StandardOpenOption.CREATE_NEW)
+                }
             } catch (e: IOException) {
                 e.printStackTrace()
             }

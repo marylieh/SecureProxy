@@ -23,6 +23,7 @@ class PreLoginEventHandler {
             logger.info("Desired Mode is offline Mode. Proceeding with forceOfflineMode: true")
             return
         }
+        logger.info("Proxy received new client connection from: ${event.connection.remoteAddress}")
         logger.info("Desired Mode is online Mode. Resuming normal login procedure.")
     }
 }
