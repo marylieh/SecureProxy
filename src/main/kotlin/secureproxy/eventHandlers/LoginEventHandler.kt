@@ -28,6 +28,15 @@ class LoginEventHandler {
             }
         }
 
+        if (DatabaseManager.getBan(player.uniqueId.toString())) {
+            if (DatabaseManager.getBanTime(player.uniqueId.toString()) < System.currentTimeMillis()) {
+                DatabaseManager.unbanPlayer(player.uniqueId)
+                return
+            }
+            player.disconnect(Component.text("You have been banned for 4 hours. Please try again later."))
+            return
+        }
+
         if (DatabaseManager.getOnlineMode(username) != isOnlineMode(originalProfile)) {
             event.player.disconnect(Component.text("You are not allowed to impersonate online players!"))
             return
