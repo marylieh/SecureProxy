@@ -3,6 +3,7 @@ plugins {
     kotlin("kapt") version "2.0.21"
     id("com.github.johnrengelman.shadow") version "8.1.1"
     kotlin("plugin.serialization") version "1.4.20"
+    id("org.sonarqube") version "6.0.1.5171"
 }
 
 group = "social.marylieh.secureproxy"
@@ -24,6 +25,15 @@ dependencies {
     annotationProcessor("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
     kapt("com.velocitypowered:velocity-api:3.4.0-SNAPSHOT")
 }
+
+sonar {
+    properties {
+        property("sonar.projectKey", "SPRXY_secure-proxy_3693614f-ab15-4ec0-9877-c331cfce8257")
+        property("sonar.projectName", "secure-proxy")
+        property("sonar.qualitygate.wait", true)
+    }
+}
+
 
 kotlin {
     jvmToolchain(21)
